@@ -1,8 +1,11 @@
 var express = require('express');
 
 var app = express();
+var router = express.Router();
+var views = __dirname + '/views/';
+
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.sendFile(views + "index.html");
 });
 
 var port = 8080;
