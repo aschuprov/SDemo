@@ -9,9 +9,12 @@
 </head>
 <body class="bg-light">
 <div class="container">
-        <label class="btn btn-primary btn-file">
-                Распознать...<input id="file" type="file" onchange="onChooseFile()" style="display: none;"></input>
-        </label>
+        <div>
+                <label for="file">
+                        <img src="camera.png" width="100pt" height="100pt">
+                </label>
+                <input id="file" type="file" onchange="onChooseFile()" style="display: none;"></input>
+        </div>
         <img id="img" src="" height="200" alt="Image preview...">
         <form class="needs-validation" novalidate>
                 <div class="row">
