@@ -7,7 +7,7 @@ app.use(express.static('public'));
 
 router.post('/', function (req, res) {
   var image = req.body;
-  res.json( { message: 'OCR called', image : image } );
+  res.json( { message: 'OCR called', image_bytes: image } );
 });
 
 app.get('/', function (req, res) {
