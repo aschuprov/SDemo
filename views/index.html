@@ -66,9 +66,26 @@
                         var reader = new FileReader();
                         reader.onloadend = function (evt) { 
                                 $("#img")[0].src = evt.target.result;
+                                ocr(evt.target.result);
                         }
                         reader.readAsDataURL(file, "UTF-8");
                 }
+        }
+
+        function ocr(image) {
+                console.log('Sending AJAX');
+                $.ajax({
+                        type: "POST",
+                        data: { image: image },
+                        dataType: "json",
+                        success: function (data, status, xhttp) {
+                                console.log(data);
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status);
+                                alert(thrownError);
+                        }
+                });
         }
 
         $(document).ready( function() {

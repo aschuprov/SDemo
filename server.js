@@ -1,16 +1,16 @@
 var express = require('express');
 
 var app = express();
+var router = express.Router(); 
 
 app.use(express.static('public'));
 
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/views/index.html');
+router.post('/', function (req, res) {
+  var image = req.body.image;
+  res.json( { message: 'OCR called', image : image } );
 });
 
-app.post('/', function (req, res) {
-  res.send('POST request to the homepage');
-});
+app.use('/ocr', router);
 
 var port = 8080;
 var ip   = '0.0.0.0';
