@@ -73,14 +73,12 @@
         }
 
         function ocr(image) {
-                console.log('Sending AJAX');
                 $.ajax({
                         url: '/ocr',
                         type: "POST",
                         data: { image: image },
                         dataType: "json",
                         success: function (data, status, xhttp) {
-                                console.log(data);
                                 $("#firstName").val(data.firstName);
                                 $("#lastName").val(data.lastName);
                         },
