@@ -8,8 +8,8 @@ app.use(express.static('public'));
 
 router.post('/', function (req, res) {
   var image = req.body;
-  console.log('IMAGE=' + image);
-  res.json( { message: 'OCR called', image_bytes: image } );
+  console.log('IMAGE=' + image.toString());
+  res.json( { firstName: 'Alex', lastName: 'Chuprov' } );
 });
 
 app.get('/', function (req, res) {

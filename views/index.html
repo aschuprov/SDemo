@@ -81,6 +81,9 @@
                         dataType: "json",
                         success: function (data, status, xhttp) {
                                 console.log(data);
+                                res = JSON.parse(data);
+                                $("firstName").val(res.firstName);
+                                $("lastName").val(res.lastName);
                         },
                         error: function (xhr, ajaxOptions, thrownError) {
                                 alert(xhr.status);
