@@ -75,6 +75,7 @@
         function ocr(image) {
                 console.log('Sending AJAX');
                 $.ajax({
+                        url: '/ocr',
                         type: "POST",
                         data: { image: image },
                         dataType: "json",
