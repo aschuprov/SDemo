@@ -10,6 +10,10 @@ router.post('/', function (req, res) {
   res.json( { message: 'OCR called', image : image } );
 });
 
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/views/index.html');
+});
+
 app.use('/ocr', router);
 
 var port = 8080;
