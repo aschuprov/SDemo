@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 
 var app = express();
 var router = express.Router(); 
@@ -15,6 +16,7 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+app.use(bodyParser.json());
 app.use('/ocr', router);
 
 var port = 8080;
