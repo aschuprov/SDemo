@@ -8,7 +8,6 @@ app.use(express.static('public'));
 
 router.post('/', function (req, res) {
   var image = req.body;
-  console.log('IMAGE=' + image.toString());
   res.json( { firstName: 'Alex', lastName: 'Chuprov' } );
 });
 
