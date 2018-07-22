@@ -27,7 +27,7 @@ var ip   = '0.0.0.0';
 app.listen(port, ip, function () {
   console.log( "Listening on " + ip + ", port " + port )
 });
-
+ 
 function ocr(image) {
   var ocrAPI = ocrSDK.create('SDemoOCR', 'Up0X00Yw8Eo1MzGRPQa1vvZt');
   ocrAPI.serverUrl = 'http://cloud.ocrsdk.com';
