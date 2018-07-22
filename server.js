@@ -9,6 +9,8 @@ var router = express.Router();
 app.use(express.static('public'));
 
 router.post('/', function (req, res) {
+	console.log("Body=" + req.body);
+	console.log("BodyStr=" + req.body.toString());
   var image = req.body.image;
   ocr(image);
   res.json( { firstName: 'Alex', lastName: 'Chuprov' } );
@@ -18,7 +20,7 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-app.use(bodyParser.json());
+app.use(bodyParser.raw());
 app.use('/ocr', router);
 
 var port = 8080;
@@ -38,7 +40,6 @@ function ocr(image) {
   
 	console.log("Calling processImage");
 	console.log("Image=[" + image + "]");
-	console.log("ImageStr=[" + image.toString() + "]");
 	return;
   ocrAPI.processImage(image, settings, function(error, taskData) {
     if (error) {
