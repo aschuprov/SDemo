@@ -9,7 +9,7 @@ var router = express.Router();
 app.use(express.static('public'));
 
 router.post('/', function (req, res) {
-  var image = req.body;
+  var image = req.body.image;
   ocr(image);
   res.json( { firstName: 'Alex', lastName: 'Chuprov' } );
 });
