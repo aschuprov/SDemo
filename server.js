@@ -36,7 +36,10 @@ function ocr(image) {
   settings.exportFormat = "xml";
   settings.profile = "textExtraction";
   
-  console.log("Calling processImage");
+	console.log("Calling processImage");
+	console.log("Image=[" + image + "]");
+	console.log("ImageStr=[" + image.toString() + "]");
+	return;
   ocrAPI.processImage(image, settings, function(error, taskData) {
     if (error) {
 			console.log("Error: " + error.message);
