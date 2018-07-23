@@ -9,6 +9,7 @@ var router = express.Router();
 app.use(express.static('public'));
 
 router.post('/', function (req, res) {
+	console("Calling OCR with=" + req.body.image );
   ocr(req.body.image);
   res.json( { firstName: 'Alex', lastName: 'Chuprov' } );
 });
@@ -18,7 +19,7 @@ app.get('/', function (req, res) {
 });
 
 app.use(bodyParser.urlencoded());
-app.use('/ocr', router);
+app.use('/ocr', router)
 
 var port = 8080;
 var ip   = '0.0.0.0';
