@@ -9,9 +9,7 @@ var router = express.Router();
 app.use(express.static('public'));
 
 router.post('/', function (req, res) {
-	console.log("Body: %O", req.body);
-  var image = req.body.image;
-  ocr(image);
+  ocr(req.body.image);
   res.json( { firstName: 'Alex', lastName: 'Chuprov' } );
 });
 
@@ -38,8 +36,6 @@ function ocr(image) {
   settings.profile = "textExtraction";
   
 	console.log("Calling processImage");
-	console.log("Image=[" + image + "]");
-	return;
   ocrAPI.processImage(image, settings, function(error, taskData) {
     if (error) {
 			console.log("Error: " + error.message);
