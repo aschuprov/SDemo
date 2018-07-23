@@ -9,7 +9,7 @@ var router = express.Router();
 app.use(express.static('public'));
 
 router.post('/', function (req, res) {
-	console("Calling OCR with=" + req.body.image );
+	console.log("Calling OCR with=" + req.body.image );
   ocr(req.body.image);
   res.json( { firstName: 'Alex', lastName: 'Chuprov' } );
 });
