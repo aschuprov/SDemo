@@ -34,9 +34,10 @@ function ocr(image) {
   settings.language = "Russian";
   settings.exportFormat = "xml";
   settings.profile = "textExtraction";
-  
-	console.log("Calling processImage with=" + image);
-  ocrAPI.processImage(image, settings, function(error, taskData) {
+	
+	var imageBuffer = decodeBase64Image(image);
+	console.log("Calling processImage with=" + imageBuffer);
+  ocrAPI.processImage(imageBuffer.data, settings, function(error, taskData) {
     if (error) {
 			console.log("Error: " + error.message);
 			return;
@@ -77,5 +78,19 @@ function ocr(image) {
 			return;
 		}
 		console.log("Done.");
+	}
+
+	function decodeBase64Image(dataString) {
+		var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+			response = {};
+	
+		if (matches.length !== 3) {
+			return new Error('Invalid input string');
+		}
+	
+		response.type = matches[1];
+		response.data = new Buffer(matches[2], 'base64');
+	
+		return response;
 	}
 }
