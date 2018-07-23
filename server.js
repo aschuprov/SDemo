@@ -30,12 +30,12 @@ app.listen(port, ip, function () {
 function ocr(image) {
   var ocrAPI = ocrSDK.create('SDemoOCR', 'Up0X00Yw8Eo1MzGRPQa1vvZt');
   ocrAPI.serverUrl = 'http://cloud.ocrsdk.com';
-  var settings = new ocrSDK.ProcessingSettings();
+  var settings = new ocrSDK.ProcessingSettings(); 
   settings.language = "Russian";
   settings.exportFormat = "xml";
   settings.profile = "textExtraction";
   
-	console.log("Calling processImage");
+	console.log("Calling processImage with=" + image);
   ocrAPI.processImage(image, settings, function(error, taskData) {
     if (error) {
 			console.log("Error: " + error.message);
