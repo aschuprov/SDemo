@@ -84,6 +84,10 @@ function ocr(image) {
 		var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
 			response = {};
 	
+		console.log("Image=" + dataString);
+		console.log("m1=" + matches[1]);
+		console.log("m2=" + matches[2]);
+
 		if (matches.length !== 3) {
 			return new Error('Invalid input string');
 		}
