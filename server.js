@@ -19,7 +19,7 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-app.use(bodyParser.raw());
+app.use(bodyParser.urlencoded());
 app.use('/ocr', router);
 
 var port = 8080;
