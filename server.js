@@ -82,6 +82,7 @@ function ocr(image) {
 	}
 
 	function decodeBase64Image(dataString) {
+		console.log("Entered decodeBase64" + dataString);
 		var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
 			response = {};
 	
