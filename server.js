@@ -76,7 +76,7 @@ function ocr(image) {
 			console.log("Error: " + error.message);
 			return;
 		}
-		console.log("Done.");
+		console.log("Done."); 
 	}
 
 	function decodeBase64Image(dataString) {
