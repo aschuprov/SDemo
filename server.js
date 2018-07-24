@@ -32,7 +32,7 @@ function ocr(image) {
   ocrAPI.serverUrl = 'http://cloud.ocrsdk.com';
   var settings = new ocrSDK.ProcessingSettings(); 
   settings.language = "Russian";
-  settings.exportFormat = "xml";
+  settings.exportFormat = "txt";
   settings.profile = "textExtraction";
 	
 	var imageBuffer = decodeBase64Image(image);
