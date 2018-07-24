@@ -67,16 +67,16 @@ function ocr(image) {
 
 		console.log("Processing completed.");
 
-    var res = ocrAPI.getResult(taskData.resultUrl.toString(), downloadCompleted);
-    console.log("res=" + res);
+		ocrAPI.getResult(taskData.resultUrl.toString(), downloadCompleted);
+		console.log("Exiting OCR function");
   }
   
-  function downloadCompleted(error) {
+  function downloadCompleted(error, data) {
 		if (error) {
 			console.log("Error: " + error.message);
 			return;
 		}
-		console.log("Done."); 
+		console.log("Done. Received=" + data); 
 	}
 
 	function decodeBase64Image(dataString) {

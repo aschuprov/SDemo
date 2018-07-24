@@ -162,27 +162,22 @@ ocrsdk.prototype.waitForCompletion = function(taskId, userCallback) {
  * 
  * @param {string} resultUrl 				URL where result is located
  * @param {function(error)} userCallback 	The callback function.
- * @returns Data
+ * @returns Data to callback
  */
-ocrsdk.prototype.downloadResult = function(resultUrl, outputFilePath,
-		userCallback) {
-	var file = fs.createWriteStream(outputFilePath);
-
+ocrsdk.prototype.getResult = function(resultUrl, userCallback) {
 	var parsed = url.parse(resultUrl);
 
 	var req = https.request(parsed, function(response) {
 		response.on('data', function(data) {
-			userCallback(null);
-			return data;
+			userCallback(null, data);
 		});
 	});
 
 	req.on('error', function(error) {
-		userCallback(error);
+		userCallback(error, null);
 	});
 
 	req.end();
-
 }
 
 /**
