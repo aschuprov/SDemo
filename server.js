@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
 app.use('/ocr', router)
 
 var port = 8080;
