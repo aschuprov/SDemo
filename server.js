@@ -9,7 +9,6 @@ var router = express.Router();
 app.use(express.static('public'));
 
 router.post('/', function (req, res) {
-	console.log("Calling OCR with=" + req.body.image );
   ocr(req.body.image);
   res.json( { firstName: 'Alex', lastName: 'Chuprov' } );
 });
@@ -37,7 +36,6 @@ function ocr(image) {
   settings.profile = "textExtraction";
 	
 	var imageBuffer = decodeBase64Image(image);
-	console.log("Calling processImage with=" + imageBuffer);
   ocrAPI.processImage(imageBuffer.data, settings, function(error, taskData) {
     if (error) {
 			console.log("Error: " + error.message);
@@ -45,12 +43,12 @@ function ocr(image) {
     }
     
 		console.log("Task id = " + taskData.id + ", status is " + taskData.status);
-		if (!ocrsdk.isTaskActive(taskData)) {
+		if (!ocrAPI.isTaskActive(taskData)) {
 			console.log("Unexpected task status " + taskData.status);
 			return;
 		}
 
-		ocrsdk.waitForCompletion(taskData.id, processingCompleted);
+		ocrAPI.waitForCompletion(taskData.id, processingCompleted);
   });
 
   function processingCompleted(error, taskData) {
@@ -69,7 +67,7 @@ function ocr(image) {
 
 		console.log("Processing completed.");
 
-    var res = ocrsdk.getResult(taskData.resultUrl.toString(), downloadCompleted);
+    var res = ocrAPI.getResult(taskData.resultUrl.toString(), downloadCompleted);
     console.log("res=" + res);
   }
   
@@ -82,14 +80,9 @@ function ocr(image) {
 	}
 
 	function decodeBase64Image(dataString) {
-		console.log("Entered decodeBase64" + dataString);
 		var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
 			response = {};
 	
-		console.log("Image=" + dataString);
-		console.log("m1=" + matches[1]);
-		console.log("m2=" + matches[2]);
-
 		if (matches.length !== 3) {
 			return new Error('Invalid input string');
 		}
