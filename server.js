@@ -7,7 +7,7 @@ var app = express();
 var router = express.Router(); 
 
 app.use(express.static('public'));
-
+ 
 router.post('/', function (req, res) {
   ocr(req.body.image);
   res.json( { firstName: 'Alex', lastName: 'Chuprov' } );
