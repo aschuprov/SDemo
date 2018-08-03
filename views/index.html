@@ -1,197 +1,208 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta charset="utf-8">
-<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-<title>SDemo</title>
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link href="css/material-bootstrap-wizard.css" rel="stylesheet" />
-<link href="css/sdemo.css" rel="stylesheet" />
-</head>
-<body class="bg-light">
-<div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-        <!--      Wizard container        -->
-                <div class="wizard-container">
-                        <div class="card wizard-card" data-color="red" id="wizard">
-                                <form action="" method="">
-                                        <div class="wizard-header">
-                                                <h3 class="wizard-title">
-                                                        Регистрация кандидата
-                                                </h3>
-                                                <h5>Заполните информацию о себе</h5>
-                                        </div>
-                                        <div class="wizard-navigation">
-                                                <ul class="wiznav-link">
-                                                        <li><a href="#docinfo" data-toggle="tab">Анкета</a></li>
-                                                        <li><a href="#contacts" data-toggle="tab">Контакты</a></li>
-                                                </ul>
-                                        </div>
 
-                                        <div class="tab-content">
-                                                <div class="tab-pane" id="docinfo">
-                                                        <div>
-                                                                <label for="file">
-                                                                        <img src="img/camera.png" width="100pt" height="100pt">
-                                                                </label>
-                                                                <input id="file" type="file" onchange="onChooseFile()" style="display: none;"></input>
-                                                        </div>
-                                                        <img id="img" src="" height="200" alt="Image preview...">                                                        
-                                                </div>
-                                                <div class="tab-pane" id="contacts">
-                                                                Page 2
-                                                </div>
-                                        </div>       
-                                        
-	                        	<div class="wizard-footer">
-                                                <div class="pull-right">
-                                                        <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Next' />
-                                                        <input type='button' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='Finish' />
-                                                </div>
-                                                <div class="pull-left">
-                                                        <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
-                                                                <div class="footer-checkbox">
-                                                                <div class="col-sm-12">
-                                                                <div class="checkbox">
-                                                                        <label>
-                                                                                <input type="checkbox" name="optionsCheckboxes">
-                                                                        </label>
-                                                                        Subscribe to our newsletter
-                                                                </div>
-                                                        </div>
-                                                        </div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                        </div>
-                                </form>
-                        </div>
-                </div>
-        </div> <!-- wizard container -->
-        </div>
-</div> <!-- row -->
-<div class="container">
-        <form class="needs-validation" method="POST" novalidate>
-                <div class="row">
-                        <div class="col-md-6 mb-3">
-                                <label for="firstName">Имя</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                                <div class="invalid-feedback">
-                                        Укажите имя
-                                </div>
-                        </div>
-                </div>
-                <div class="row">
-                        <div class="col-md-6 mb-3">
-                                <label for="lastName">Фамилия</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                                <div class="invalid-feedback">
-                                        Укажите фамилию
-                                </div>
-                        </div>
-                </div>
-                <button class="btn btn-primary col-md-6" type="submit">Отправить</button>
-        </form>
-        <ul class="nav nav-tabs nav-justified">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Follow</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">Contact</a>
-                </li>
-            </ul>
-            <!-- Tab panels -->
-            <div class="tab-content card">
-                <!--Panel 1-->
-                <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
-                    <br>
-                    <p>1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-                        reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-                        porro voluptate odit minima.</p>
-                </div>
-                <!--/.Panel 1-->
-                <!--Panel 2-->
-                <div class="tab-pane fade" id="panel2" role="tabpanel">
-                    <br>
-                    <p>2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-                        reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-                        porro voluptate odit minima.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-                        reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-                        porro voluptate odit minima.</p>
-                </div>
-                <!--/.Panel 2-->
-                <!--Panel 3-->
-                <div class="tab-pane fade" id="panel3" role="tabpanel">
-                    <br>
-                    <p>3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-                        reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-                        porro voluptate odit minima.</p>
-                </div>
-                <!--/.Panel 3-->
-            </div>
-</div>
+<head>
+	<meta charset="UTF-8">
+	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<title>SDemo</title>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
+	/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
+	<link href="./css/material-bootstrap-wizard.css" rel="stylesheet" />
+	<link href="./css/sdemo.css" rel="stylesheet" />
+</head>
+
+<body class="bg-light">
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<!--      Wizard container        -->
+			<div class="wizard-container">
+				<div class="card wizard-card" data-color="green" id="wizard">
+					<form action="" method="">
+						<div class="wizard-header">
+							<h3 class="wizard-title">
+								Регистрация кандидата
+							</h3>
+						</div>
+						<div class="wizard-navigation">
+							<ul class="wiznav-link">
+								<li>
+									<a href="#docinfo" data-toggle="tab">Анкета</a>
+								</li>
+								<li>
+									<a href="#contacts" data-toggle="tab">Контакты</a>
+								</li>
+							</ul>
+						</div>
+
+						<div class="tab-content">
+							<div class="tab-pane" id="docinfo">
+								<div>Вы можете заполнить поля анкеты автоматически, загрузив скан документа или сфотографировав его (если эта страница
+									открыта на мобильном устройстве):</div>
+								<div class="row">
+									<div class="col-sm">
+										<label class="btn btn-primary btn-block">
+											Паспорт
+											<input id="filePASS" type="file" onchange="onChooseFile('PASS')" style="display: none;"></input>
+										</label>
+									</div>
+									<div class="col-sm">
+										<label class="btn btn-default btn-block">
+											СНИЛС
+											<input id="fileSNILS" type="file" onchange="onChooseFile('SNILS')" style="display: none;"></input>
+										</label>
+									</div>
+									<div class="col-sm">
+										<label class="btn btn-default btn-block" disabled>
+											ИНН
+											<input id="fileINN" type="file" onchange="onChooseFile('INN')" style="display: none;"></input>
+										</label>
+									</div>
+								</div>
+								<img id="img" src="" height="200" alt="Image preview...">
+								<div class="form-group label-floating">
+									<label class="control-label">Фамилия
+										<span class="text-danger">
+											<sup>*</sup>
+										</span>
+									</label>
+									<input name="lastname" type="text" class="form-control">
+								</div>
+								<div class="form-group label-floating">
+									<label class="control-label">Имя
+										<span class="text-danger">
+											<sup>*</sup>
+										</span>
+									</label>
+									<input name="firstname" type="text" class="form-control">
+								</div>
+								<div class="form-group label-floating">
+									<label class="control-label">Отчество
+										<span class="text-danger">
+											<sup>*</sup>
+										</span>
+									</label>
+									<input name="midname" type="text" class="form-control">
+								</div>
+								<div class="form-row form-group">
+									<div class="col-sm-2 form-group label-floating">
+										<label class="control-label">Серия</label>
+										<input name="pass_seria" type="text" class="form-control">
+									</div>
+									<div class="col-sm-8 form-group label-floating">
+										<label class="control-label">Номер паспорта</label>
+										<input name="pass_number" type="text" class="form-control">
+									</div>
+									<div class="col-sm-2 form-group label-floating">
+										<input name="pass_date" type="date" class="form-control">
+									</div>
+								</div>
+								<div class="form-group label-floating">
+									<label class="control-label">СНИЛС</label>
+									<input name="snils" type="text" class="form-control">
+								</div>
+								<div class="form-group label-floating">
+									<label class="control-label">ИНН</label>
+									<input name="inn" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="tab-pane" id="contacts">
+								<div class="col-sm-8 form-group label-floating">
+									<label class="control-label">Email
+										<span class="text-danger">
+											<sup>*</sup>
+										</span>
+									</label>
+									<input name="email" type="email" class="form-control">
+								</div>
+								<div class=" col-sm-4 form-group label-floating">
+									<label class="control-label">Телефон
+										<span class="text-danger">
+											<sup>*</sup>
+										</span>
+									</label>
+									<input name="phone" type="text" class="form-control">
+								</div>
+							</div>
+						</div>
+
+						<div class="wizard-footer">
+							<div class="pull-right">
+								<input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Далее&nbsp;&gt;' />
+								<input type='button' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='Сохранить' />
+							</div>
+							<div class="pull-left">
+								<input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='&lt;&nbsp;Назад' />
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- wizard container -->
+	</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="js/jquery.bootstrap.js" type="text/javascript"></script>
-<script src="js/material-bootstrap-wizard.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+ crossorigin="anonymous"></script>
+<script src="./js/jquery.bootstrap.js" type="text/javascript"></script>
+<script src="./js/material-bootstrap-wizard.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
 <script>
-        function set_validator() {
-                'use strict';
-                window.addEventListener('load', function() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-                }, false);
-                });
-                }, false);
-        };
+	function set_validator() {
+		'use strict';
+		window.addEventListener('load', function () {
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.getElementsByClassName('needs-validation');
+			// Loop over them and prevent submission
+			var validation = Array.prototype.filter.call(forms, function (form) {
+				form.addEventListener('submit', function (event) {
+					if (form.checkValidity() === false) {
+						event.preventDefault();
+						event.stopPropagation();
+					}
+					form.classList.add('was-validated');
+				}, false);
+			});
+		}, false);
+	};
 
-        function onChooseFile() {
-                var file = $("#file")[0].files[0];
-                if (file) {
-                        var reader = new FileReader();
-                        reader.onloadend = function (evt) { 
-                                $("#img")[0].src = evt.target.result;
-                                ocr(evt.target.result);
-                        }
-                        reader.readAsDataURL(file, "UTF-8");
-                }
-        }
+	function onChooseFile(type) {
+		var file = $("#file" + type)[0].files[0];
+		if (file) {
+			var reader = new FileReader();
+			reader.onloadend = function (evt) {
+				$("#img")[0].src = evt.target.result;
+				ocr(evt.target.result);
+			}
+			reader.readAsDataURL(file, "UTF-8");
+		}
+	}
 
-        function ocr(image) {
-                $.ajax({
-                        url: '/ocr',
-                        type: "POST",
-                        data: { image: image },
-                        dataType: "json",
-                        success: function (data, status, xhttp) {
-                                $("#firstName").val(data.firstName);
-                                $("#lastName").val(data.lastName);
-                        },
-                        error: function (xhr, ajaxOptions, thrownError) {
-                                alert(xhr.status);
-                                alert(thrownError);
-                        }
-                });
-        }
+	function ocr(image) {
+		$.ajax({
+			url: '/ocr',
+			type: "POST",
+			data: { image: image },
+			dataType: "json",
+			success: function (data, status, xhttp) {
+				$("#firstName").val(data.firstName);
+				$("#lastName").val(data.lastName);
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+				alert(xhr.status);
+				alert(thrownError);
+			}
+		});
+	}
 
-        $(document).ready( function() {
-                set_validator();
-        });
+	$(document).ready(function () {
+		set_validator();
+	});
 </script>
+
 </html>
