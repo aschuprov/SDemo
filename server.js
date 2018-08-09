@@ -9,7 +9,6 @@ var router = express.Router();
 app.use(express.static('public'));
 
 router.post('/', function (req, res) {
-	//var image = decodeBase64Image(req.body.image);
 	ocrSendFile(req.body.image);
 	res.json({ firstName: 'Alex', lastName: 'Chuprov' });
 });
@@ -29,27 +28,8 @@ app.listen(port, ip, function () {
 });
 
 function ocrSendFile(image) {
-	var boundary = 'ThisIsTheDelimiter';
 	var accountId = '5b62fd82dd7d6f10d8c3a0f0';
 	var token = 'VqJWr6vEW9Ci3b1TayTqolWbJoY=';
-/*
-	body = "--" + boundary + "\r\n";
-	body += 'Content-Disposition: form-data; '
-		// Define the name of the form data
-		+ 'name="0"; '
-		// Provide the real name of the file
-		+ 'filename="pass.jpg"\r\n';
-	// And the MIME type of the file
-	body += 'Content-Type: image/jpeg\r\n\r\n';
-
-	var payload = Buffer.concat([
-		Buffer.from(body, "utf8"),
-		new Buffer(image, 'binary'),
-		Buffer.from('\r\n--' + boundary + '\r\n', 'utf8')
-	]);
-
-	console.log('Sending: ' + payload);
-*/
 	const formData = {
 		exampleImage: {
 			value: Buffer.from(image, "base64"),
@@ -63,8 +43,6 @@ function ocrSendFile(image) {
 	const postOptions = {
 		url: "https://api.flexicapture.com/v1/file?email=ASChuprov@sberbank.ru",
 		headers: {
-			//				'content-type' : 'multipart/form-data; boundary=' + boundary,
-			//				'content-length' : image.length,
 			'authorization': 'Basic ' + new Buffer(accountId + ':' + token).toString("base64"),
 			'accept': 'application/json, text/json'
 		},
@@ -73,46 +51,38 @@ function ocrSendFile(image) {
 
 	request.post(postOptions, function (error, response, body) {
 			console.log('Response: ' + body);
+			ocrStartTask(body['id'], body['token']);
 		});
-	/*    
-			console.log("Task id = " + taskData.id + ", status is " + taskData.status);
-			if (!ocrAPI.isTaskActive(taskData)) {
-				console.log("Unexpected task status " + taskData.status);
-				return;
+}
+
+function ocrStartTask(id, token) {
+	console.log('Starting task: ' + id + ' : ' + token);
+	body = {
+		"properties": {},
+		"export_format": "xml",
+		"verification_type": "NoVerification",
+		"email": "ASChuprov@sberbank.ru",
+		"label": "Passport",
+		"files": [
+			{
+				"id": id,
+				"token": token
 			}
-	
-			ocrAPI.waitForCompletion(taskData.id, processingCompleted);
+		]
+	}
+	const postOptions = {
+		url: "https://api.flexicapture.com/v1/capture/data",
+		headers: {
+			'authorization': 'Basic ' + new Buffer(accountId + ':' + token).toString("base64"),
+			'accept': 'application/json, text/json',
+			'content-type': 'application/json'
+		},
+		body: JSON.stringify(body)
+	};
+
+	request.post(postOptions, function (error, response, body) {
+			console.log('Response: ' + body);
 		});
-	
-		function processingCompleted(error, taskData) {
-			if (error) {
-				console.log("Error: " + error.message);
-				return;
-			}
-	
-			if (taskData.status != 'Completed') {
-				console.log("Error processing the task.");
-				if (taskData.error) {
-					console.log("Message: " + taskData.error);
-				}
-				return;
-			}
-	
-			console.log("Processing completed.");
-	
-			ocrAPI.getResult(taskData.resultUrl.toString(), downloadCompleted);
-			console.log("Exiting OCR function");
-		}
-	  
-		function downloadCompleted(error, data) {
-			if (error) {
-				console.log("Error: " + error.message);
-				return;
-			}
-			console.log("Done. Received=" + data); 
-		}
-	
-		*/
 }
 
 function decodeBase64Image(dataString) {
