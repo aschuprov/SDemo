@@ -36,9 +36,10 @@ function ocrSendFile(image) {
 	console.log('Sending: ' + body);
 	request.post(
 		{ headers: {
-				'Content-Type' : 'multipart/form-data; boundary=' + boundary,
-				'Content-Length' : image.length,
-				'Authentication' : 'Basic ' + new Buffer(accountId + ':' + token).toString("base64")
+				'content-type' : 'multipart/form-data; boundary=' + boundary,
+				'content-length' : image.length,
+				'authorization' : 'Basic ' + new Buffer(accountId + ':' + token).toString("base64"),
+				'accept' : 'application/json, text/json'
 			},
 			url: 'https://api.flexicapture.com/v1/file?email=ASChuprov@sberbank.ru', 
 			body: body
