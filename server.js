@@ -30,13 +30,15 @@ app.listen(port, ip, function () {
  
 function ocrSendFile(image) {
 	var boundary = '-ThisIsTheDelimiter-';
-	var body = ['\r\n'];
-	body.push('Content-Disposition: form-data; name="0"\r\nContent-Type: image/jpeg\r\n\r\n' + image + '\r\n');
+	var accountId = '5b62fd82dd7d6f10d8c3a0f0';
+	var token = 'VqJWr6vEW9Ci3b1TayTqolWbJoY=';
+	body = '\r\nContent-Disposition: form-data; name="0"\r\nContent-Type: image/jpeg\r\n\r\n' + image + '\r\n';
 	console.log('Sending: ' + body);
 	request.post(
 		{ headers: {
 				'Content-Type' : 'multipart/form-data; boundary=' + boundary,
-				'Content-Length' : image.length
+				'Content-Length' : image.length,
+				'Authentication' : 'Basic ' + new Buffer(accountId + ':' + token).toString("base64")
 			},
 			url: 'https://api.flexicapture.com/v1/file?email=ASChuprov@sberbank.ru', 
 			body: body
