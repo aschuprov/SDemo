@@ -10,7 +10,7 @@ app.use(express.static('public'));
  
 router.post('/', function (req, res) {
 	var image = decodeBase64Image(req.body.image);
-   ocrSendFile(image);
+  ocrSendFile(image);
   res.json( { firstName: 'Alex', lastName: 'Chuprov' } );
 });
 
@@ -29,11 +29,26 @@ app.listen(port, ip, function () {
 });
  
 function ocrSendFile(image) {
-	var boundary = '-ThisIsTheDelimiter-';
+	var boundary = 'ThisIsTheDelimiter';
 	var accountId = '5b62fd82dd7d6f10d8c3a0f0';
 	var token = 'VqJWr6vEW9Ci3b1TayTqolWbJoY=';
-	body = '\r\nContent-Disposition: form-data; name="0"\r\nContent-Type: image/jpeg\r\n\r\n' + image + '\r\n';
-	console.log('Sending: ' + body);
+
+	body = "--" + boundary + "\r\n";
+	body += 'Content-Disposition: form-data; '
+      // Define the name of the form data
+            + 'name="0"; '
+      // Provide the real name of the file
+						+ 'filename="pass.jpg"\r\n';
+	// And the MIME type of the file
+	body += 'Content-Type: image/jpeg\r\n\r\n' + image;
+
+	var payload = Buffer.concat([
+		Buffer.from(body, "utf8"),
+		new Buffer(image, 'binary'),
+		Buffer.from('\r\n--' + boundary + '\r\n', 'utf8')
+	]);
+
+  console.log('Sending: ' + payload);
 	request.post(
 		{ headers: {
 				'content-type' : 'multipart/form-data; boundary=' + boundary,
@@ -42,7 +57,7 @@ function ocrSendFile(image) {
 				'accept' : 'application/json, text/json'
 			},
 			url: 'https://api.flexicapture.com/v1/file?email=ASChuprov@sberbank.ru', 
-			body: body
+			body: payload
 		},
     function(error, response, body) {
 			console.log( 'Response: ' + body ); 
