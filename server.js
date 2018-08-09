@@ -6,6 +6,9 @@ var request = require('request');
 var app = express();
 var router = express.Router();
 
+var accountId = '5b62fd82dd7d6f10d8c3a0f0';
+var token = 'VqJWr6vEW9Ci3b1TayTqolWbJoY=';
+
 app.use(express.static('public'));
 
 router.post('/', function (req, res) {
@@ -28,8 +31,6 @@ app.listen(port, ip, function () {
 });
 
 function ocrSendFile(image) {
-	var accountId = '5b62fd82dd7d6f10d8c3a0f0';
-	var token = 'VqJWr6vEW9Ci3b1TayTqolWbJoY=';
 	const formData = {
 		exampleImage: {
 			value: Buffer.from(image, "base64"),
@@ -51,7 +52,7 @@ function ocrSendFile(image) {
 
 	request.post(postOptions, function (error, response, body) {
 			console.log('Response: ' + body);
-			ocrStartTask(body['id'], body['token']);
+			ocrStartTask(body[0].id, body[0].token);
 		});
 }
 
