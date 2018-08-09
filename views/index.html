@@ -16,134 +16,99 @@
 </head>
 
 <body class="bg-light">
-	<div class="row">
-		<div class="col-sm-8 col-sm-offset-2">
-			<!--      Wizard container        -->
-			<div class="wizard-container">
-				<div class="card wizard-card" data-color="green" id="wizard">
-					<form action="" method="">
-						<div class="wizard-header">
-							<h3 class="wizard-title">
-								Регистрация кандидата
-							</h3>
-						</div>
-						<div class="wizard-navigation">
-							<ul class="wiznav-link">
-								<li>
-									<a href="#docinfo" data-toggle="tab">Анкета</a>
-								</li>
-								<li>
-									<a href="#contacts" data-toggle="tab">Контакты</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="tab-content">
-							<div class="tab-pane" id="docinfo">
-								<div>Вы можете заполнить поля анкеты автоматически, загрузив скан документа или сфотографировав его (если эта страница
-									открыта на мобильном устройстве):</div>
-								<div class="row">
-									<div class="col-sm">
-										<label class="btn btn-primary btn-block">
-											Паспорт
-											<input id="filePASS" type="file" onchange="onChooseFile('PASS')" style="display: none;"></input>
-										</label>
-									</div>
-									<div class="col-sm">
-										<label class="btn btn-default btn-block">
-											СНИЛС
-											<input id="fileSNILS" type="file" onchange="onChooseFile('SNILS')" style="display: none;"></input>
-										</label>
-									</div>
-									<div class="col-sm">
-										<label class="btn btn-default btn-block" disabled>
-											ИНН
-											<input id="fileINN" type="file" onchange="onChooseFile('INN')" style="display: none;"></input>
-										</label>
-									</div>
-								</div>
-								<img id="img" src="" height="200" alt="Image preview...">
-								<div class="form-group label-floating">
-									<label class="control-label">Фамилия
-										<span class="text-danger">
-											<sup>*</sup>
-										</span>
-									</label>
-									<input name="lastname" type="text" class="form-control">
-								</div>
-								<div class="form-group label-floating">
-									<label class="control-label">Имя
-										<span class="text-danger">
-											<sup>*</sup>
-										</span>
-									</label>
-									<input name="firstname" type="text" class="form-control">
-								</div>
-								<div class="form-group label-floating">
-									<label class="control-label">Отчество
-										<span class="text-danger">
-											<sup>*</sup>
-										</span>
-									</label>
-									<input name="midname" type="text" class="form-control">
-								</div>
-								<div class="form-row form-group">
-									<div class="col-sm-2 form-group label-floating">
-										<label class="control-label">Серия</label>
-										<input name="pass_seria" type="text" class="form-control">
-									</div>
-									<div class="col-sm-8 form-group label-floating">
-										<label class="control-label">Номер паспорта</label>
-										<input name="pass_number" type="text" class="form-control">
-									</div>
-									<div class="col-sm-2 form-group label-floating">
-										<input name="pass_date" type="date" class="form-control">
-									</div>
-								</div>
-								<div class="form-group label-floating">
-									<label class="control-label">СНИЛС</label>
-									<input name="snils" type="text" class="form-control">
-								</div>
-								<div class="form-group label-floating">
-									<label class="control-label">ИНН</label>
-									<input name="inn" type="text" class="form-control">
-								</div>
-							</div>
-							<div class="tab-pane" id="contacts">
-								<div class="col-sm-8 form-group label-floating">
-									<label class="control-label">Email
-										<span class="text-danger">
-											<sup>*</sup>
-										</span>
-									</label>
-									<input name="email" type="email" class="form-control">
-								</div>
-								<div class=" col-sm-4 form-group label-floating">
-									<label class="control-label">Телефон
-										<span class="text-danger">
-											<sup>*</sup>
-										</span>
-									</label>
-									<input name="phone" type="text" class="form-control">
-								</div>
-							</div>
-						</div>
-
-						<div class="wizard-footer">
-							<div class="pull-right">
-								<input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Далее&nbsp;&gt;' />
-								<input type='button' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='Сохранить' />
-							</div>
-							<div class="pull-left">
-								<input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='&lt;&nbsp;Назад' />
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</form>
+	<div class="container col-sm-6 col-md-6 col-lg-6">
+		<div class="bg-white row">
+			<div class="center-block col-sm-12 col-md-12 col-lg-12">
+				<h3 class="wizard-title">
+					Регистрация кандидата
+				</h3>
+				<div>Вы можете заполнить поля анкеты автоматически, загрузив скан документа или сфотографировав его (если эта страница открыта
+					на мобильном устройстве):</div>
+				<div class="row">
+					<div class="col-sm">
+						<label class="btn btn-primary btn-block">
+							Паспорт
+							<input id="filePASS" type="file" onchange="onChooseFile('PASS')" style="display: none;"></input>
+						</label>
+					</div>
+					<div class="col-sm">
+						<label class="btn btn-default btn-block">
+							СНИЛС
+							<input id="fileSNILS" type="file" onchange="onChooseFile('SNILS')" style="display: none;"></input>
+						</label>
+					</div>
+					<div class="col-sm">
+						<label class="btn btn-default btn-block" disabled>
+							ИНН
+							<input id="fileINN" type="file" onchange="onChooseFile('INN')" style="display: none;"></input>
+						</label>
+					</div>
+				</div>
+				<img id="img" src="" height="200" alt="Image preview...">
+				<div class="form-group label-floating">
+					<label class="control-label">Фамилия
+						<span class="text-danger">
+							<sup>*</sup>
+						</span>
+					</label>
+					<input name="lastname" type="text" class="form-control">
+				</div>
+				<div class="form-group label-floating">
+					<label class="control-label">Имя
+						<span class="text-danger">
+							<sup>*</sup>
+						</span>
+					</label>
+					<input name="firstname" type="text" class="form-control">
+				</div>
+				<div class="form-group label-floating">
+					<label class="control-label">Отчество
+						<span class="text-danger">
+							<sup>*</sup>
+						</span>
+					</label>
+					<input name="midname" type="text" class="form-control">
+				</div>
+				<div class="form-row form-group">
+					<div class="col-sm-2 form-group label-floating">
+						<label class="control-label">Серия</label>
+						<input name="pass_seria" type="text" class="form-control">
+					</div>
+					<div class="col-sm-8 form-group label-floating">
+						<label class="control-label">Номер паспорта</label>
+						<input name="pass_number" type="text" class="form-control">
+					</div>
+					<div class="col-sm-2 form-group label-floating">
+						<input name="pass_date" type="date" class="form-control">
+					</div>
+				</div>
+				<div class="form-group label-floating">
+					<label class="control-label">СНИЛС</label>
+					<input name="snils" type="text" class="form-control">
+				</div>
+				<div class="form-group label-floating">
+					<label class="control-label">ИНН</label>
+					<input name="inn" type="text" class="form-control">
+				</div>
+				<div class="form-group label-floating">
+					<label class="control-label">Email
+						<span class="text-danger">
+							<sup>*</sup>
+						</span>
+					</label>
+					<input name="email" type="email" class="form-control">
+				</div>
+				<div class="form-group label-floating">
+					<label class="control-label">Телефон
+						<span class="text-danger">
+							<sup>*</sup>
+						</span>
+					</label>
+					<input name="phone" type="text" class="form-control">
 				</div>
 			</div>
+			</form>
 		</div>
-		<!-- wizard container -->
 	</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
@@ -153,24 +118,6 @@
 <script src="../js/material-bootstrap-wizard.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
 <script>
-	function set_validator() {
-		'use strict';
-		window.addEventListener('load', function () {
-			// Fetch all the forms we want to apply custom Bootstrap validation styles to
-			var forms = document.getElementsByClassName('needs-validation');
-			// Loop over them and prevent submission
-			var validation = Array.prototype.filter.call(forms, function (form) {
-				form.addEventListener('submit', function (event) {
-					if (form.checkValidity() === false) {
-						event.preventDefault();
-						event.stopPropagation();
-					}
-					form.classList.add('was-validated');
-				}, false);
-			});
-		}, false);
-	};
-
 	function onChooseFile(type) {
 		var file = $("#file" + type)[0].files[0];
 		if (file) {
@@ -190,8 +137,8 @@
 			data: { image: image },
 			dataType: "json",
 			success: function (data, status, xhttp) {
-				$("#firstName").val(data.firstName);
-				$("#lastName").val(data.lastName);
+				$("#firstname").val(data.firstName);
+				$("#lastname").val(data.lastName);
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 				alert(xhr.status);
@@ -199,10 +146,6 @@
 			}
 		});
 	}
-
-	$(document).ready(function () {
-		set_validator();
-	});
 </script>
 
 </html>

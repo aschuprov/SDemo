@@ -9,7 +9,8 @@ var router = express.Router();
 app.use(express.static('public'));
  
 router.post('/', function (req, res) {
-  ocr(req.body.image);
+	var image = decodeBase64Image(req.body.image);
+   ocrSendFile(image);
   res.json( { firstName: 'Alex', lastName: 'Chuprov' } );
 });
 
@@ -27,21 +28,23 @@ app.listen(port, ip, function () {
   console.log( "Listening on " + ip + ", port " + port )
 });
  
-function ocr(image) {
-  var ocrAPI = ocrSDK.create('SDemoOCR', 'Up0X00Yw8Eo1MzGRPQa1vvZt');
-  ocrAPI.serverUrl = 'http://cloud.ocrsdk.com';
-  var settings = new ocrSDK.ProcessingSettings(); 
-  settings.language = "Russian";
-  settings.exportFormat = "txt";
-  settings.profile = "textExtraction";
-	
-	var imageBuffer = decodeBase64Image(image);
-  ocrAPI.processImage(imageBuffer.data, settings, function(error, taskData) {
-    if (error) {
-			console.log("Error: " + error.message);
-			return;
-    }
-    
+function ocrSendFile(image) {
+	var boundary = '-ThisIsTheDelimiter-';
+	var body = ['\r\n'];
+	body.push('Content-Disposition: form-data; name="0"\r\nContent-Type: image/jpeg\r\n\r\n' + image + '\r\n');
+	console.log('Sending: ' + body);
+	request.post(
+		{ headers: {
+				'Content-Type' : 'multipart/form-data; boundary=' + boundary,
+				'Content-Length' : image.length
+			},
+			url: 'https://api.flexicapture.com/v1/file?email=ASChuprov@sberbank.ru', 
+			body: body
+		},
+    function(error, response, body) {
+			console.log( 'Response: ' + body ); 
+	}); 
+/*    
 		console.log("Task id = " + taskData.id + ", status is " + taskData.status);
 		if (!ocrAPI.isTaskActive(taskData)) {
 			console.log("Unexpected task status " + taskData.status);
@@ -92,4 +95,5 @@ function ocr(image) {
 	
 		return response;
 	}
+	*/
 }
