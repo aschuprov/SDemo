@@ -53,7 +53,7 @@ function ocrSendFile(image) {
 	request.post(postOptions, function (error, response, body) {
 		console.log('Response: ' + body);
 		var respdata = JSON.parse(body);
-		console('RespData: ' + respdata);
+		console.log('RespData: ' + respdata);
 		ocrStartTask(respdata.id, respdata.token);
 	});
 }
