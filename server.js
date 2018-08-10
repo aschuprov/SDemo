@@ -51,9 +51,11 @@ function ocrSendFile(image) {
 	};
 
 	request.post(postOptions, function (error, response, body) {
-			console.log('Response: ' + body);
-			ocrStartTask(body[0].id, body[0].token);
-		});
+		console.log('Response: ' + body);
+		var respdata = JSON.parse(body);
+		console('RespData: ' + respdata);
+		ocrStartTask(respdata.id, respdata.token);
+	});
 }
 
 function ocrStartTask(id, token) {
