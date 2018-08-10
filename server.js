@@ -7,7 +7,7 @@ var app = express();
 var router = express.Router();
 
 var accountId = '5b62fd82dd7d6f10d8c3a0f0';
-var token = 'VqJWr6vEW9Ci3b1TayTqolWbJoY=';
+var accountToken = 'VqJWr6vEW9Ci3b1TayTqolWbJoY=';
 
 app.use(express.static('public'));
 
@@ -44,7 +44,7 @@ function ocrSendFile(image) {
 	const postOptions = {
 		url: "https://api.flexicapture.com/v1/file?email=ASChuprov@sberbank.ru",
 		headers: {
-			'authorization': 'Basic ' + new Buffer(accountId + ':' + token).toString("base64"),
+			'authorization': 'Basic ' + new Buffer(accountId + ':' + accountToken).toString("base64"),
 			'accept': 'application/json, text/json'
 		},
 		formData
@@ -72,10 +72,11 @@ function ocrStartTask(id, token) {
 			}
 		]
 	}
+	console.log("AccountID: " + accountId);
 	const postOptions = {
 		url: "https://api.flexicapture.com/v1/capture/data",
 		headers: {
-			'authorization': 'Basic ' + new Buffer(accountId + ':' + token).toString("base64"),
+			'authorization': 'Basic ' + new Buffer(accountId + ':' + accountToken).toString("base64"),
 			'accept': 'application/json, text/json',
 			'content-type': 'application/json'
 		},
@@ -83,7 +84,7 @@ function ocrStartTask(id, token) {
 	};
 
 	request.post(postOptions, function (error, response, body) {
-			console.log('Response: ' + body);
+			console.log('Response at start task: ' + body);
 		});
 }
 
