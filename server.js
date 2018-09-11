@@ -20,7 +20,7 @@ router.post('/', function (req, res) {
 		else
 			res.json({ firstName: 'FAILED', lastName: 'FAILED' });
 	});
-//	res.json({ firstName: 'Alex', lastName: 'Chuprov' });
+//	res.json({ firstName: 'Alex', lastName: 'Chuprov' }); 
 });
 
 app.get('/', function (req, res) {
