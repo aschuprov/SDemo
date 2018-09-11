@@ -93,7 +93,7 @@ function ocrStartTask(id, token, callback) {
 	request.post(postOptions, function (error, response, body) {
 		console.log('Response at start task: ' + body);
 		var respdata = JSON.parse(body);
-		setTimeout(WaitForResult(respdata[0].id, callback), wait_timeout);
+		setTimeout(WaitForResult(respdata.id, callback), wait_timeout);
 	});
 }
 
@@ -112,10 +112,10 @@ function WaitForResult(id, callback) {
 	request.post(postOptions, function (error, response, body) {
 		console.log('Received task status: ' + body);
 		var respdata = JSON.parse(body);
-		switch (respdata[0].status) {
+		switch (respdata.status) {
 			case 'Done':
-				console.log('ITS DONE! ' + respdata[0].services[0].files[0]);
-				callback(true, respdata[0].services[0].files[0]);
+				console.log('ITS DONE! ' + respdata.services[0].files[0]);
+				callback(true, respdata.services[0].files[0]);
 				break;
 
 			case 'Failed':
@@ -124,9 +124,9 @@ function WaitForResult(id, callback) {
 				break;
 
 			default:
-				console.log('Received status: ' + respdata[0].status);
+				console.log('Received status: ' + respdata.status);
 				console('Waiting again...');
-				setTimeout(WaitForResult(respdata[0].id, callback), wait_timeout);
+				setTimeout(WaitForResult(respdata.id, callback), wait_timeout);
 				break;
 		}
 	});
