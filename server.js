@@ -98,7 +98,7 @@ function ocrStartTask(id, token, callback) {
 }
 
 function WaitForResult(id, callback) {
-	console('WaitForResult started');
+	console.log('WaitForResult started');
 
 	const postOptions = {
 		url: "https://api.flexicapture.com/v1/task/" + id,
@@ -125,7 +125,7 @@ function WaitForResult(id, callback) {
 
 			default:
 				console.log('Received status: ' + respdata.status);
-				console('Waiting again...');
+				console.log('Waiting again...');
 				setTimeout(WaitForResult(respdata.id, callback), wait_timeout);
 				break;
 		}
