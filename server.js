@@ -152,7 +152,7 @@ function DownloadResult(id, token, callback) {
 	request.get(postOptions, function (error, response, body) {
 		console.log('Downloaded result');
 		parser.parseString(body, function (err, result) {
-//			console.log('Extracted: ' + result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]['_']);
+			console.log('Extracted: ' + JSON.stringify(result['form:Documents']));
 			callback(true, { 
 				firstName: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_Name'][0]['_'], 
 				lastName: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]['_'] 

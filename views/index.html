@@ -152,6 +152,11 @@
 			timeout: 120000
 		});
 	}
+
+	function set_val(id, val) {
+		$(id).focus().val(val);
+		$(id).parent('.mdl-textfield').removeClass('is-invalid').addClass('is-dirty')
+	}
 </script>
 
 </html>
