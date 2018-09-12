@@ -15,6 +15,7 @@ var wait_timeout = 2000;
 app.use(express.static('public'));
 
 router.post('/', function (req, res) {
+	res.connection.setTimeout(60000);
 	ocrSendFile(req.body.image, function(success, result) {
 		if (success) {
 			res.json({ firstName: 'URA', lastName: result });
