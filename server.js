@@ -13,9 +13,11 @@ var accountToken = 'VqJWr6vEW9Ci3b1TayTqolWbJoY=';
 var wait_timeout = 2000;
 
 app.use(express.static('public'));
+var server = app.listen();
+server.setTimeout(60000);
 
 router.post('/', function (req, res) {
-	res.connection.setTimeout(0);
+	req.setTimeout(60000);;
 	ocrSendFile(req.body.image, function(success, result) {
 		if (success) {
 			res.json(result);
@@ -147,7 +149,7 @@ function DownloadResult(id, token, callback) {
 		}
 	};
 	request.get(postOptions, function (error, response, body) {
-//		console.log('Downloaded: ' + body);
+		console.log('Downloaded result');
 		parser.parseString(body, function (err, result) {
 //			console.log('Extracted: ' + result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]['_']);
 			callback(true, { 
