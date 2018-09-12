@@ -19,7 +19,6 @@ router.post('/', function (req, res) {
 	res.setTimeout(120000);
 	ocrSendFile(req.body.image, function(success, result) {
 		if (success) {
-			console.log('Returning result: ' + result['lastName']);
 			res.json(result);
 		}
 		else
@@ -154,8 +153,14 @@ function DownloadResult(id, token, callback) {
 		parser.parseString(body, function (err, result) {
 			console.log('Extracted: ' + JSON.stringify(result['form:Documents']));
 			callback(true, { 
+				lastName: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]['_'] ,
 				firstName: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_Name'][0]['_'], 
-				lastName: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]['_'] 
+				midName: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SecName'][0]['_'],
+				birthDate: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_BirthDate'][0]['_'],
+				passSeria: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_Ser'][0]['_'],
+				passNumber: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_Num'][0]['_'],
+				passDate: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_Date'][0]['_'],
+				passGiven: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_Kem'][0]['_'],
 			});
 		});
 	});
