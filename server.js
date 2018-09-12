@@ -13,8 +13,6 @@ var accountToken = 'VqJWr6vEW9Ci3b1TayTqolWbJoY=';
 var wait_timeout = 2000;
 
 app.use(express.static('public'));
-var server = app.listen();
-server.setTimeout(120000);
 
 router.post('/', function (req, res) {
 	req.setTimeout(120000);
@@ -39,9 +37,10 @@ app.use('/ocr', router)
 var port = 8080;
 var ip = '0.0.0.0';
 
-app.listen(port, ip, function () {
+var server = app.listen(port, ip, function () {
 	console.log("Listening on " + ip + ", port " + port)
 });
+server.setTimeout(120000);
 
 function ocrSendFile(image, callback) {
 	const formData = {
