@@ -152,18 +152,32 @@ function DownloadResult(id, token, callback) {
 		console.log('Downloaded result');
 		parser.parseString(body, function (err, result) {
 			console.log('Extracted: ' + JSON.stringify(result['form:Documents']));
+			var passdata = result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]; 
 			callback(true, { 
-				lastName: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]['_'] ,
-				firstName: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_Name'][0]['_'], 
-				midName: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SecName'][0]['_'],
-				birthDate: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_BirthDate'][0]['_'],
-				passSeria: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_Ser'][0]['_'],
-				passNumber: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_Num'][0]['_'],
-				passDate: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_Date'][0]['_'],
-				passGiven: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_Kem'][0]['_'],
+				lastName:   getValue(passdata, '_PP_SurName'),
+				firstName:  getValue(passdata, '_PP_Name'), 
+				midName:    getValue(passdata, '_PP_SecName'),
+				birthDate:  getValue(passdata, '_PP_BirthDate'),
+				passDate:   getValue(passdata, '_PP_Date'),
+				passGiven:  getValue(passdata, '_PP_Kem'),
+				passSeria:  getBestNumber(result, '_PP_Ser', '_PP_Ser2', 4),
+				passNumber: getBestNumber(result, '_PP_Num', '_PP_Num2', 6),
 			});
 		});
 	});
+}
+
+function getValue(json, field) {
+	return json[field][0]['_'];
+}
+
+function getBestNumber(json, f1, f2, length) {
+	var val1 = getValue(json, f1).replace(/\s+/g, '');
+	var val2 = getValue(json, f2).replace(/\s+/g, '');	
+	if (Math.abs(val1.length-length)<=Math.abs(val2.length-length))
+		return val1;
+	else
+		return val2;
 }
 
 function decodeBase64Image(dataString) {
