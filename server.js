@@ -2,7 +2,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var ocrSDK = require('./ocrsdk.js');
 var request = require('request');
+var xml2js = require('xml2js');
 
+var parser = new xml2js.Parser();
 var app = express();
 var router = express.Router();
 
@@ -145,9 +147,10 @@ function DownloadResult(id, token, callback) {
 	};
 	request.get(postOptions, function (error, response, body) {
 		console.log('Downloaded: ' + body);
-		var respdata = JSON.parse(body);
-		console.log('Extracted: ' + respdata);
-//		callback(true, respdata.services[0].files.target.id);
+		parser.parseString(body, function (err, result) {
+			console.log('Extracted: ' + result['_Паспорт_РФ:_Паспорт_РФ1']['_PP_SurName']);
+	//		callback(true, respdata.services[0].files.target.id);
+		});
 	});
 }
 
