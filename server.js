@@ -93,7 +93,7 @@ function ocrStartTask(id, token, callback) {
 	request.post(postOptions, function (error, response, body) {
 		console.log('Response at start task: ' + body);
 		var respdata = JSON.parse(body);
-		setTimeout(WaitForResult(respdata.id, callback), wait_timeout);
+		setTimeout(WaitForResult, wait_timeout, respdata.id, callback);
 	});
 }
 
@@ -126,7 +126,7 @@ function WaitForResult(id, callback) {
 			default:
 				console.log('Received status: ' + respdata.status);
 				console.log('Waiting again...');
-				setTimeout(WaitForResult(respdata.id, callback), wait_timeout);
+				setTimeout(WaitForResult, wait_timeout, respdata.id, callback);
 				break;
 		}
 	});
