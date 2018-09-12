@@ -151,7 +151,7 @@ function DownloadResult(id, token, callback) {
 	request.get(postOptions, function (error, response, body) {
 		console.log('Downloaded result');
 		parser.parseString(body, function (err, result) {
-			console.log('Extracted: ' + JSON.stringify(result['form:Documents']));
+			//console.log('Extracted: ' + JSON.stringify(result['form:Documents']));
 			var passdata = result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]; 
 			callback(true, { 
 				lastName:   getValue(passdata, '_PP_SurName'),
