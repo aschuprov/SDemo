@@ -17,7 +17,7 @@ app.use(express.static('public'));
 router.post('/', function (req, res) {
 	ocrSendFile(req.body.image, function(success, result) {
 		if (success) {
-			res.json({ firstName: 'URA', lastName: 'URA' });
+			res.json({ firstName: 'URA', lastName: result });
 		}
 		else
 			res.json({ firstName: 'FAILED', lastName: 'FAILED' });
@@ -148,8 +148,8 @@ function DownloadResult(id, token, callback) {
 	request.get(postOptions, function (error, response, body) {
 		console.log('Downloaded: ' + body);
 		parser.parseString(body, function (err, result) {
-			console.log('Extracted: ' + JSON.stringify(result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName']));
-	//		callback(true, respdata.services[0].files.target.id);
+			console.log('Extracted: ' + result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName']);
+			callback(true, result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName']);
 		});
 	});
 }
