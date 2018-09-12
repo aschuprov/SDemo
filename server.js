@@ -148,7 +148,7 @@ function DownloadResult(id, token, callback) {
 	request.get(postOptions, function (error, response, body) {
 		console.log('Downloaded: ' + body);
 		parser.parseString(body, function (err, result) {
-			console.log('Extracted: ' + JSON.stringify(result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1']));
+			console.log('Extracted: ' + JSON.stringify(result['form:Documents']));
 	//		callback(true, respdata.services[0].files.target.id);
 		});
 	});
