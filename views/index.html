@@ -142,8 +142,13 @@
 			data: { image: image },
 			dataType: "json",
 			success: function (data, status, xhttp) {
-				$("#firstname").val(data.firstName);
-				$("#lastname").val(data.lastName);
+				set_val("#firstname", data.firstName);
+				set_val("#lastname", data.lastName);
+				set_val("#midname", data.midName);
+				set_val("#pass_seria", data.passSeria);
+				set_val("#pass_number", data.passNumber);
+				set_val("#pass_date", data.passDate);
+				set_val("#pass_given", data.passGiven);
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 				alert(xhr.status);
