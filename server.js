@@ -36,7 +36,7 @@ app.use('/ocr', router)
 
 var port = 8080;
 var ip = '0.0.0.0';
-
+ 
 var server = app.listen(port, ip, function () {
 	console.log("Listening on " + ip + ", port " + port)
 });
