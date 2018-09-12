@@ -32,7 +32,7 @@
 						</label>
 					</div>
 					<div class="col-sm">
-						<label class="btn btn-default btn-block">
+						<label class="btn btn-default btn-block" disabled>
 							СНИЛС
 							<input id="fileSNILS" type="file" onchange="onChooseFile('SNILS')" style="display: none;"></input>
 						</label>
@@ -74,7 +74,7 @@
 							<sup>*</sup>
 						</span>
 					</label>
-					<input id="birthdate" type="text" class="form-control">
+					<input id="birthdate" type="date" class="form-control">
 				</div>
 				<div class="form-row form-group">
 					<div class="col-sm-2 form-group label-static">
@@ -135,7 +135,7 @@
 			var reader = new FileReader();
 			reader.onloadend = function (evt) {
 			//	$("#img")[0].src = evt.target.result;
-				$("#btn_pass").html("<i class='fa fa-spinner fa-spin '></i>Распознавание...");
+				$("#btn_pass").html("<i class='fa fa-spinner fa-spin '></i>&nbsp;Распознавание...");
 				ocr(evt.target.result);
 			}
 			reader.readAsDataURL(file, "UTF-8");

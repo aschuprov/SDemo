@@ -170,7 +170,7 @@ function DownloadResult(id, token, callback) {
 function getValue(json, field) {
 	var item = json[field][0];
 	if (item != null && item['_'] != null)
-		return item['_'];
+		return item['_'].replace(/[\r\n]+/g," ");
 	else
 		return "";
 }
