@@ -119,6 +119,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
 <script>
 	function onChooseFile(type) {
+		$("#lastname").val('In progress...');
 		var file = $("#file" + type)[0].files[0];
 		if (file) {
 			var reader = new FileReader();
