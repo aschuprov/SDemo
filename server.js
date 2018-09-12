@@ -168,7 +168,11 @@ function DownloadResult(id, token, callback) {
 }
 
 function getValue(json, field) {
-	return json[field][0]['_'];
+	var item = json[field][0];
+	if (item != null)
+		return item['_'];
+	else
+		return "";
 }
 
 function getBestNumber(json, f1, f2, length) {
