@@ -6,7 +6,7 @@ var xml2js = require('xml2js');
 
 var parser = new xml2js.Parser();
 var app = express();
-var router = express.Router();
+var router = express.Router(); 
 
 var accountId = '5b62fd82dd7d6f10d8c3a0f0';
 var accountToken = 'VqJWr6vEW9Ci3b1TayTqolWbJoY=';
