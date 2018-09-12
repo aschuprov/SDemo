@@ -160,8 +160,8 @@ function DownloadResult(id, token, callback) {
 				birthDate:  getValue(passdata, '_PP_BirthDate'),
 				passDate:   getValue(passdata, '_PP_Date'),
 				passGiven:  getValue(passdata, '_PP_Kem'),
-				passSeria:  getBestNumber(result, '_PP_Ser', '_PP_Ser2', 4),
-				passNumber: getBestNumber(result, '_PP_Num', '_PP_Num2', 6),
+				passSeria:  getBestNumber(passdata, '_PP_Ser', '_PP_Ser2', 4),
+				passNumber: getBestNumber(passdata, '_PP_Num', '_PP_Num2', 6),
 			});
 		});
 	});
