@@ -115,7 +115,8 @@ function WaitForResult(id, callback) {
 		switch (respdata.status) {
 			case 'Done':
 				console.log('ITS DONE! ' + respdata.services[0].files[0]);
-				callback(true, respdata.services[0].files[0]);
+				// Extracting results
+				DownloadResult(respdata.services[0].files.target.id, respdata.services[0].files.target.token, callback)
 				break;
 
 			case 'Failed':
@@ -129,6 +130,24 @@ function WaitForResult(id, callback) {
 				setTimeout(WaitForResult, wait_timeout, respdata.id, callback);
 				break;
 		}
+	});
+}
+
+function DownloadResult(id, token, callback) {
+	console.log('Downloading result...');
+	const postOptions = {
+		url: "https://api.flexicapture.com/v1/file/" + id + '/' + token,
+		headers: {
+			'authorization': 'Basic ' + new Buffer(accountId + ':' + accountToken).toString("base64"),
+			'accept': 'application/json, text/json',
+			'content-type': 'application/json'
+		}
+	};
+	request.get(postOptions, function (error, response, body) {
+		console.log('Downloaded: ' + body);
+		var respdata = JSON.parse(body);
+		console.log('Extracted: ' + respdata);
+//		callback(true, respdata.services[0].files.target.id);
 	});
 }
 
