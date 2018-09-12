@@ -10,7 +10,7 @@ var router = express.Router();
 
 var accountId = '5b62fd82dd7d6f10d8c3a0f0';
 var accountToken = 'VqJWr6vEW9Ci3b1TayTqolWbJoY=';
-var wait_timeout = 2000;
+var wait_timeout = 5000;
 
 app.use(express.static('public'));
 
