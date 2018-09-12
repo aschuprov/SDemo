@@ -40,8 +40,7 @@ app.listen(port, ip, function () {
 function ocrSendFile(image, callback) {
 	const formData = {
 		exampleImage: {
-//			value: Buffer.from(image, "base64"),
-			value: image.toString('base64'),
+			value: Buffer.from(image.split(’,’)[1], "base64"),
 			options: {
 				filename: "example-image.jpg",
 				contentType: "image/jpeg"
