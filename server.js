@@ -148,8 +148,8 @@ function DownloadResult(id, token, callback) {
 	request.get(postOptions, function (error, response, body) {
 		console.log('Downloaded: ' + body);
 		parser.parseString(body, function (err, result) {
-			console.log('Extracted: ' + result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]);
-			callback(true, result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]);
+			console.log('Extracted: ' + result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]['_']);
+			callback(true, result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]['_']);
 		});
 	});
 }
