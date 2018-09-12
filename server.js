@@ -15,10 +15,10 @@ var wait_timeout = 2000;
 app.use(express.static('public'));
 
 router.post('/', function (req, res) {
-	res.connection.setTimeout(60000);
+	res.connection.setTimeout(0);
 	ocrSendFile(req.body.image, function(success, result) {
 		if (success) {
-			res.json({ firstName: 'URA', lastName: result });
+			res.json(result);
 		}
 		else
 			res.json({ firstName: 'FAILED', lastName: 'FAILED' });
@@ -61,7 +61,7 @@ function ocrSendFile(image, callback) {
 	};
 
 	request.post(postOptions, function (error, response, body) {
-		console.log('Response: ' + body);
+//		console.log('Response: ' + body);
 		var respdata = JSON.parse(body);
 		ocrStartTask(respdata[0].id, respdata[0].token, callback);
 	});
@@ -82,7 +82,7 @@ function ocrStartTask(id, token, callback) {
 			}
 		]
 	}
-	console.log("AccountID: " + accountId);
+//	console.log("AccountID: " + accountId);
 	const postOptions = {
 		url: "https://api.flexicapture.com/v1/capture/data",
 		headers: {
@@ -94,7 +94,7 @@ function ocrStartTask(id, token, callback) {
 	};
 
 	request.post(postOptions, function (error, response, body) {
-		console.log('Response at start task: ' + body);
+//		console.log('Response at start task: ' + body);
 		var respdata = JSON.parse(body);
 		setTimeout(WaitForResult, wait_timeout, respdata.id, callback);
 	});
@@ -113,11 +113,11 @@ function WaitForResult(id, callback) {
 	};
 
 	request.get(postOptions, function (error, response, body) {
-		console.log('Received task status: ' + body);
+//		console.log('Received task status: ' + body);
 		var respdata = JSON.parse(body);
 		switch (respdata.status) {
 			case 'Done':
-				console.log('ITS DONE! ' + respdata.services[0].files[0]);
+//				console.log('ITS DONE! ' + respdata.services[0].files[0]);
 				// Extracting results
 				DownloadResult(respdata.services[0].files.target.id, respdata.services[0].files.target.token, callback)
 				break;
@@ -137,7 +137,7 @@ function WaitForResult(id, callback) {
 }
 
 function DownloadResult(id, token, callback) {
-	console.log('Downloading result...');
+//	console.log('Downloading result...');
 	const postOptions = {
 		url: "https://api.flexicapture.com/v1/file/" + id + '/' + token,
 		headers: {
@@ -147,10 +147,13 @@ function DownloadResult(id, token, callback) {
 		}
 	};
 	request.get(postOptions, function (error, response, body) {
-		console.log('Downloaded: ' + body);
+//		console.log('Downloaded: ' + body);
 		parser.parseString(body, function (err, result) {
-			console.log('Extracted: ' + result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]['_']);
-			callback(true, result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]['_']);
+//			console.log('Extracted: ' + result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]['_']);
+			callback(true, { 
+				firstName: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_Name'][0]['_'], 
+				lastName: result['form:Documents']['_Паспорт_РФ:_Паспорт_РФ1'][0]['_PP_SurName'][0]['_'] 
+			});
 		});
 	});
 }
