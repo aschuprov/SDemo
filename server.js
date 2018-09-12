@@ -14,10 +14,11 @@ var wait_timeout = 2000;
 
 app.use(express.static('public'));
 var server = app.listen();
-server.setTimeout(60000);
+server.setTimeout(120000);
 
 router.post('/', function (req, res) {
-	req.setTimeout(60000);;
+	req.setTimeout(120000);
+	res.setTimeout(120000);
 	ocrSendFile(req.body.image, function(success, result) {
 		if (success) {
 			res.json(result);
