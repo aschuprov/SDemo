@@ -26,10 +26,10 @@
 					на мобильном устройстве):</div>
 				<div class="row">
 					<div class="col-sm">
-						<label class="btn btn-primary btn-block">
+						<button id="btn_pass" class="btn btn-primary btn-block" data-loading-text="<i class='fa fa-spinner fa-spin '></i>Распознавание...">
 							Паспорт
 							<input id="filePASS" type="file" onchange="onChooseFile('PASS')" style="display: none;"></input>
-						</label>
+						</button>
 					</div>
 					<div class="col-sm">
 						<label class="btn btn-default btn-block">
@@ -135,6 +135,7 @@
 			var reader = new FileReader();
 			reader.onloadend = function (evt) {
 			//	$("#img")[0].src = evt.target.result;
+				$("#btn_pass").button("loading");
 				ocr(evt.target.result);
 			}
 			reader.readAsDataURL(file, "UTF-8");
@@ -156,8 +157,10 @@
 				set_val("#pass_number", data.passNumber);
 				set_val("#pass_date", data.passDate);
 				set_val("#pass_given", data.passGiven);
+				$("#btn_pass").button("reset");
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
+				$("#btn_pass").button("reset");
 				alert(xhr.status);
 				alert(thrownError);
 			},
