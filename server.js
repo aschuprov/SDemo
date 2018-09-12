@@ -19,6 +19,7 @@ router.post('/', function (req, res) {
 	res.setTimeout(120000);
 	ocrSendFile(req.body.image, function(success, result) {
 		if (success) {
+			console.log('Returning result: ' + result['lastName']);
 			res.json(result);
 		}
 		else
