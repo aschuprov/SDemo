@@ -109,7 +109,7 @@ function WaitForResult(id, callback) {
 		}
 	};
 
-	request.post(postOptions, function (error, response, body) {
+	request.get(postOptions, function (error, response, body) {
 		console.log('Received task status: ' + body);
 		var respdata = JSON.parse(body);
 		switch (respdata.status) {
